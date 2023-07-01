@@ -13,7 +13,7 @@ namespace MarimoDesktopMascot
             TcpReceiver _receiver;
             public Receiver()
             {
-                _receiver = new TcpReceiver();
+                _receiver = new TcpReceiver("10.0.0.133", 8001);
             }
 
             override public byte[] ReadBytes()

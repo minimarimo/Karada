@@ -13,7 +13,8 @@ namespace MarimoDesktopMascot
 
             public Sender()
             {
-                _sender = new TcpSender();
+                // TODO: こいつは本来動的に読み込むものなので後で修正
+                _sender = new TcpSender("10.0.0.133", 8000);
             }
 
             override public byte[] ReadBytes()
