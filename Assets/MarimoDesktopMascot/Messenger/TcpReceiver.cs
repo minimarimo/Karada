@@ -8,23 +8,11 @@ namespace MarimoDesktopMascot
     namespace Messenger
     {
 
-        public class TcpReceiver : Base
+        public class TcpReceiver : TcpBase
         {
-            override public byte[] ReadBytes()
+            public TcpReceiver(string host, int port) : base(host, port)
             {
-                Debug.Log("TcpReceiverのReadBytesが呼ばれました");
-                return Encoding.UTF8.GetBytes("Receiver: This is a testだよ");
-            }
-            override public void WriteBytes(byte[] bytes)
-            {
-                Debug.Log("TcpReceiverのWriteBytesが呼ばれました");
-            }
-            override public void Communicate()
-            {
-                Debug.Log("TcpReceiverのCommunicateが呼ばれました");
-                string responce = ReadStr();
-                Debug.Log("ReasStrの結果: "+responce);
-                WriteStr("OK!");
+                Debug.Log("TcpReceiverのコンストラクタが呼ばれました");
             }
         }
     }
