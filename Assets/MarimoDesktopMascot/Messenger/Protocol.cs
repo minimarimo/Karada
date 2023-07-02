@@ -53,7 +53,7 @@ namespace MarimoDesktopMascot
             [System.Serializable]
             public class LoadCharacterArgs
             {
-                public string character;
+                public string name;
                 public string path;
                 public string description;
                 public string license;

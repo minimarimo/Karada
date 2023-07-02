@@ -3,8 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UniGLTF;
 using UnityEngine;
-
+using VRM;
 
 namespace MarimoDesktopMascot
 {
@@ -22,7 +23,25 @@ namespace MarimoDesktopMascot
         public string LoadCharacter(Protocol.LoadCharacter command)
         {
             string ret = "OK";
-            Debug.Log("LoadCharacter: " + command.args.character);
+            Debug.Log(command.args.name + "さんを" + command.args.path + "から呼んでいます...");
+            RuntimeGltfInstance instance = null;
+            async void LoadCharacter(string path)
+            {
+                try
+                {
+                    Debug.Log("OK?");
+                    instance = await VrmUtility.LoadAsync(path);
+                    Debug.Log("OK?");
+                    instance.ShowMeshes();
+                    Debug.Log("OK?");
+                }
+                catch (Exception E)
+                {
+                    Debug.LogException(E);
+                }
+            }
+            LoadCharacter(command.args.path);
+            Debug.Log("OK!");
             return ret;
         }
     }
@@ -31,6 +50,9 @@ namespace MarimoDesktopMascot
     {
         Messenger.Messenger _messenger;
         Command _command;
+
+        // FIXME: 仮実装
+        Protocol.LoadCharacter _character;
 
         void Awake()
         {
@@ -54,9 +76,14 @@ namespace MarimoDesktopMascot
             switch (commandName)
             {
                 case "LoadCharacter":
-                    var loadCharacter = JsonUtility.FromJson<Protocol.LoadCharacter>(json);
-                    Debug.Log("LoadCharacter: " + loadCharacter.args.character);
-                    return null;
+                    // キャラを実装するためにはメインスレッドから呼び出し処理を呼ぶ必要がある
+                    // そのため、リファクタリングをする必要が生じたが、今はとりあえず動くようにする
+                    // 具体的には、適当なメンバ変数にぶち込んで、Update でそれを実行するようにする
+                    _character = JsonUtility.FromJson<Protocol.LoadCharacter>(json);
+                    /*
+                    return _command.LoadCharacter(character);
+                    */
+                    return "OK";
                 case "Say":
                     var say = JsonUtility.FromJson<Protocol.Say>(json);
                     return _command.Say(say);
@@ -93,6 +120,13 @@ namespace MarimoDesktopMascot
         {
             // Task.Run(() => RunSender());
             Task.Run(() => RunReceiver());
+        }
+
+        private void Update()
+        {
+            if (_character ==null) { return; }
+            _command.LoadCharacter(_character);
+            _character = null;
         }
     }
 }
