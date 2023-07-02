@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 namespace MarimoDesktopMascot
 {
@@ -46,7 +47,13 @@ namespace MarimoDesktopMascot
                     {
                         Debug.Log("Communicateが呼ばれました");
                         string responce = ReadStr();
+                        Debug.Log("でコードするぞ!");
+                        Protocol.Say say= JsonUtility.FromJson<Protocol.Say>(responce);
+                        Debug.Log("でコード終わったぞ!");
                         Debug.Log("ReasStrの結果: " + responce);
+                        Debug.Log("一個目を表示するぞ");
+                        Debug.Log(say.args.message[0]);
+                        Debug.Log("OKか?");
                         WriteStr("OK!");
                     }
                 }
