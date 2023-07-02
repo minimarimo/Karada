@@ -83,8 +83,6 @@ namespace MarimoDesktopMascot
                 public string command;
                 public TestArgs args;
             }
-
-
         }
     }
 }
