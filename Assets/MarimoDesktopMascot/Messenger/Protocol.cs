@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 
 namespace MarimoDesktopMascot
 {
@@ -6,6 +7,11 @@ namespace MarimoDesktopMascot
     {
         public class Protocol
         {
+            [System.Serializable]
+            public class Command
+            {
+                public string command;
+            }
 
             [System.Serializable]
             public class Nest
@@ -45,6 +51,22 @@ namespace MarimoDesktopMascot
             }
 
             [System.Serializable]
+            public class LoadCharacterArgs
+            {
+                public string character;
+                public string path;
+                public string description;
+                public string license;
+            }
+
+            [System.Serializable]
+            public class LoadCharacter
+            {
+                public string command;
+                public LoadCharacterArgs args;
+            }
+
+            [System.Serializable]
             public class TestArgs
             {
                 public string message;
@@ -61,6 +83,8 @@ namespace MarimoDesktopMascot
                 public string command;
                 public TestArgs args;
             }
+
+
         }
     }
 }
