@@ -22,6 +22,14 @@ namespace MarimoDesktopMascot
                 _client = new TcpListener(ipAddr, port);
             }
 
+            public void Start()
+            {
+                Debug.Log("Listenが呼ばれました");
+                _client.Start();
+                var client = _client.AcceptTcpClient();
+                _stream = client.GetStream();
+            }
+
             override public byte[] ReadBytes()
             {
                 Debug.Log("TcpBaseのReadBytesが呼ばれました");
@@ -35,28 +43,6 @@ namespace MarimoDesktopMascot
                 byte[] clientDataBytes = Encoding.UTF8.GetBytes(Encoding.UTF8.GetString(bytes) + "\n");
                 _stream.Write(clientDataBytes, 0, clientDataBytes.Length);
                 _stream.Flush();
-            }
-            override public void Communicate()
-            {
-                _client.Start();
-                var client = _client.AcceptTcpClient();
-                _stream = client.GetStream();
-                while (true)
-                {
-                    if (_stream.DataAvailable)
-                    {
-                        Debug.Log("Communicateが呼ばれました");
-                        string responce = ReadStr();
-                        Debug.Log("でコードするぞ!");
-                        Protocol.Say say= JsonUtility.FromJson<Protocol.Say>(responce);
-                        Debug.Log("でコード終わったぞ!");
-                        Debug.Log("ReasStrの結果: " + responce);
-                        Debug.Log("一個目を表示するぞ");
-                        Debug.Log(say.args.message[0]);
-                        Debug.Log("OKか?");
-                        WriteStr("OK!");
-                    }
-                }
             }
         }
     }
