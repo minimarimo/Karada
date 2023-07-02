@@ -14,7 +14,7 @@ namespace MarimoDesktopMascot
             public Sender()
             {
                 // TODO: こいつは本来動的に読み込むものなので後で修正
-                _sender = new TcpSender("10.0.0.133", 8000);
+                _sender = new TcpSender("127.0.0.1", 8000);
             }
 
 
