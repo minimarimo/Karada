@@ -10,18 +10,12 @@ namespace MarimoDesktopMascot
     {
         public class Messenger
         {
-            Sender _sender;
-            Receiver _receiver;
+            public Sender Sender;
+            public Receiver Receiver;
             public Messenger()
             {
-                _sender = new Sender();
-                _receiver = new Receiver();
-            }
-
-            public void communicate()
-            {
-                Task.Run(() => _sender.Communicate());
-                Task.Run(() => _receiver.Communicate());
+                Sender = new Sender();
+                Receiver = new Receiver();
             }
         }
     }

@@ -16,6 +16,11 @@ namespace MarimoDesktopMascot
                 _receiver = new TcpReceiver("10.0.0.133", 8001);
             }
 
+            public void Start()
+            {
+                _receiver.Start();
+            }
+
             override public byte[] ReadBytes()
             {
                 return _receiver.ReadBytes();
@@ -23,10 +28,6 @@ namespace MarimoDesktopMascot
             override public void WriteBytes(byte[] bytes)
             {
                 _receiver.WriteBytes(bytes);
-            }
-            override public void Communicate()
-            {
-                _receiver.Communicate();
             }
         }
     }

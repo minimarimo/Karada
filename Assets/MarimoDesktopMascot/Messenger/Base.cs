@@ -21,8 +21,6 @@ namespace MarimoDesktopMascot
             {
                 WriteBytes(Encoding.UTF8.GetBytes(str));
             }
-
-            public abstract void Communicate();
         }
     }
 }
