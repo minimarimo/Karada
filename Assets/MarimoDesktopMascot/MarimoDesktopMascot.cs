@@ -29,11 +29,8 @@ namespace MarimoDesktopMascot
             {
                 try
                 {
-                    Debug.Log("OK?");
                     instance = await VrmUtility.LoadAsync(path);
-                    Debug.Log("OK?");
                     instance.ShowMeshes();
-                    Debug.Log("OK?");
                 }
                 catch (Exception E)
                 {
