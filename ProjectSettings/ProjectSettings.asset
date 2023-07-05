@@ -88,7 +88,7 @@ PlayerSettings:
   usePlayerLog: 1
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
-  useFlipModelSwapchain: 1
+  useFlipModelSwapchain: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
@@ -672,15 +672,15 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: karada
-  metroPackageVersion: 
-  metroCertificatePath: 
+  metroPackageVersion: 1.0.0.0
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 00b5259deecbda01
   metroApplicationDescription: karada
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: karada
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

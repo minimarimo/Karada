@@ -55,6 +55,7 @@ namespace MarimoDesktopMascot
         {
             _messenger = new Messenger.Messenger();
             _command = new Command();
+            UI.Window.TransparentWindow.DoTransparentWindow();
         }
 
         string ParseJsonAndExecuteCommand(string json)
