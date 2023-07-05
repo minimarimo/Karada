@@ -14,7 +14,12 @@ namespace MarimoDesktopMascot
 
             public class TransparentWindow
             {
-#if UNITY_STANDALONE_WIN
+#if UNITY_EDITOR
+                public static void DoTransparentWindow()
+                {
+                    Debug.LogWarning("DoTransparentWindow() is not implemented on UNITY_EDITOR.");
+                }
+#elif UNITY_STANDALONE_WIN
                 [DllImport("user32.dll")]
                 private static extern int GetActiveWindow();
                 [DllImport("user32.dll")]
@@ -41,11 +46,10 @@ namespace MarimoDesktopMascot
 #else
                 public static void DoTransparentWindow()
                 {
-                    Debug.Log("DoTransparentWindow() is not implemented on this platform.");
+                    Debug.LogWarning("DoTransparentWindow() is not implemented on this platform.");
                 }
 #endif
             }
-
         }
     }
 }
